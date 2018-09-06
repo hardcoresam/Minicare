@@ -33,11 +33,12 @@ public class ListApplicationServlet extends HttpServlet {
             SitterService sitterService = new SitterService();
             List<JobApplicationDTO> list = sitterService.listApplications(member.getMemberId());
             if (list.isEmpty()) {
-                //Say to the user that you have not applied to any job yet.
-                //Exception Handling Here
+                request.setAttribute("success","You have not applied to any Job yet.");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePagesitter.jsp");
+                requestDispatcher.forward(request, response);
             } else {
                 request.setAttribute("listOfApplications", list);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListApplications.jsp");  //Create this.
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListApplications.jsp");
                 requestDispatcher.forward(request, response);
             }
         }

@@ -37,6 +37,8 @@ public class EditProfileServlet extends HttpServlet {
                 seeker.setAddress(member.getAddress());
                 seeker.setType(member.getType());
 
+
+
                 request.setAttribute("member",seeker);
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("EditProfile.jsp");

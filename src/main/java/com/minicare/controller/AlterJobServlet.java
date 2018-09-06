@@ -1,6 +1,7 @@
 package com.minicare.controller;
 
 import com.minicare.form.PostJobForm;
+import com.minicare.model.Job;
 import com.minicare.model.Member;
 import com.minicare.service.SeekerService;
 import com.minicare.util.MemberConstants;
@@ -36,12 +37,17 @@ public class AlterJobServlet extends HttpServlet {
             String endDate = request.getParameter(MemberConstants.END_DATE);
 
             PostJobForm form = new PostJobForm(title, payPerHour, startTime, endTime, startDate, endDate);
+
+
             form.setJobId(Integer.parseInt(request.getParameter("jobId")));
+
+
             HashMap<String,String> map = form.validate();
 
             if(map.isEmpty()) {
                 SeekerService seekerService = new SeekerService();
                 if(seekerService.alterJob(form)) {
+
                     //request.setAttribute("success","Job Was Edited Successfully");    //How to display this????
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListJobs.do");
                     requestDispatcher.forward(request, response);
@@ -53,6 +59,7 @@ public class AlterJobServlet extends HttpServlet {
                 }
             }
             else {
+                request.setAttribute("form",form);
                 request.setAttribute("errors",map);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("EditJob.jsp");
                 requestDispatcher.forward(request, response);

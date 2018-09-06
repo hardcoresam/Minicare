@@ -9,27 +9,27 @@
 <br><br>
 
 <form action="ListActiveJobs.do" method="POST">
-<div align="center"><input type = "submit" name="    " value="List Active Jobs"></div>
+<div align="center"><input type = "submit" value="List Active Jobs"></div>
 <br><br>
 </form>
 
 <form action="ListApplication.do" method="POST">
-<div align="center"><input type = "submit" name="    " value="List Applications"></div>
+<div align="center"><input type = "submit" value="List Applications"></div>
 <br><br>
 </form>
 
 <form action="ListApplication.do" method="POST">
-<div align="center"><input type = "submit" name="    " value="Delete Application"></div>
+<div align="center"><input type = "submit" value="Delete Application"></div>
 <br><br>
 </form>
 
 <form action="EditProfile.do" method="POST">
-<div align="center"><input type = "submit" name="    " value="Edit Profile"></div>
+<div align="center"><input type = "submit" value="Edit Profile"></div>
 <br><br>
 </form>
 
 <form action="LogOut.do" method="POST">
-<div align="center"><input type = "submit" name="    " value="Log Out"></div>
+<div align="center"><input type = "submit" value="Log Out"></div>
 <br><br>
 </form>
 

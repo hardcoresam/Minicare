@@ -34,8 +34,9 @@ public class ListApplicationSeeker extends HttpServlet {
             SeekerService seekerService = new SeekerService();
             List<ListApplicationDTO> list = seekerService.listApplications(jobId);
             if(list.isEmpty()) {
-                //Say to the user that There are no applications for this job yet.
-                //Exception Handling Here
+                request.setAttribute("success","There are no applications for this job yet.");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePageseeker.jsp");
+                requestDispatcher.forward(request, response);
             }
             else {
                 request.setAttribute("listOfApplications",list);

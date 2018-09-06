@@ -1,5 +1,6 @@
 package com.minicare.controller;
 
+import com.minicare.form.PostJobForm;
 import com.minicare.model.Job;
 import com.minicare.model.Member;
 import com.minicare.service.SeekerService;
@@ -31,7 +32,7 @@ public class EditJobServlet extends HttpServlet {
             SeekerService seekerService = new SeekerService();
             Job job = seekerService.getJobById(jobId);
 
-            request.setAttribute("job",job);
+            request.setAttribute("form",job);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("EditJob.jsp");
             dispatcher.forward(request, response);

@@ -58,6 +58,7 @@ public class RegistrationServlet extends HttpServlet {
             }
         }
         else {
+            request.setAttribute("form",regForm);
             request.setAttribute("errors",map);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("Registration.jsp");
             requestDispatcher.forward(request, response);

@@ -30,7 +30,7 @@
 
 <tr>
 <td>Enter Address:*</td>
-<td><textarea name="address" rows="4" cols="40"> <c:out value="${requestScope.member.address}"/> </textarea></td>
+<td><textarea name="address" rows="4" cols="40"><c:out value="${requestScope.member.address}"/></textarea></td>
 <td><c:out value='${errors["address"]}'/></td>
 </tr>
 

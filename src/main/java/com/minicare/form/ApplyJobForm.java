@@ -25,10 +25,14 @@ public class ApplyJobForm {
         return sitterId;
     }
 
-    public HashMap<String,String> validate() {
+    public String validate() {
+        String error = null;
 
-        //Do Job Validation Here
+        if(expectedPay.equals(""))
+            error = "Please enter Expected Pay";
+        else if(!expectedPay.matches("^[0-9]+([\\.]?[0-9]+)?$"))
+            error = "Please enter a valid number";
 
-        return new HashMap<String, String>();
+        return error;
     }
 }

@@ -37,9 +37,9 @@ public class ApplyJobServlet extends HttpServlet {
             System.err.println(expectedPay);
 
             ApplyJobForm form = new ApplyJobForm(expectedPay, Integer.parseInt(jobId), member.getMemberId());
-            HashMap<String,String> map = form.validate();
+            String error = form.validate();
 
-            if(map.isEmpty()) {
+            if(error == null) {
                 SitterService sitterService = new SitterService();
                 boolean status = sitterService.applyJob(form);
                 if(status == true) {
@@ -53,7 +53,8 @@ public class ApplyJobServlet extends HttpServlet {
                 }
             }
             else {
-                request.setAttribute("errors",map);
+                request.setAttribute("expectedPay",expectedPay);
+                request.setAttribute("errors",error);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("ApplyJob.jsp");
                 requestDispatcher.forward(request, response);
             }

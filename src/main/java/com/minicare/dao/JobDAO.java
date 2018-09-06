@@ -38,7 +38,8 @@ public class JobDAO {
             }
         }
         catch(SQLException e) {
-            System.out.println(e);
+            System.err.println("asfasfnaslfla");
+            System.err.println(e);
         }
         finally {
             try {
@@ -52,7 +53,6 @@ public class JobDAO {
     }
 
     public boolean editJob(Job job) {
-        boolean status = false;
         Connection con=null;
         try {
             con = getConnection();
@@ -65,9 +65,7 @@ public class JobDAO {
             pst.setTime(5,job.getStartTime());
             pst.setTime(6,job.getEndTime());
             pst.setInt(7,job.getJobId());
-            if(pst.executeUpdate()>0) {
-                status = true;
-            }
+            pst.executeUpdate();
         }
         catch(SQLException e) {
             System.out.println(e);
@@ -80,7 +78,7 @@ public class JobDAO {
                 System.out.println(e);
             }
         }
-        return status;
+        return true;
     }
 
     public List<Job> listJobs(int seekerId) {

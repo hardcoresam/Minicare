@@ -75,30 +75,75 @@ public class RegistrationForm {
     }
 
     public HashMap<String,String> validate() {
+        HashMap<String,String> map = new HashMap<>();
 
-        /*
-        Code Validation Logic Here like this.
+        //FIRSTNAME
+        if(firstName.equals(""))
+            map.put("firstName","Please Enter Firstname");
+        else if(!firstName.matches("^[a-zA-Z]+$"))
+            map.put("firstName","Please enter a valid Firstname");
 
-        if(username.length()==0)
-            map.put("username","Please Enter Username");
-        if(password.length()==0)
-            map.put("password","Please Enter Password");
-        if(type.equals("Seeker"))
+        //LASTNAME
+        if(!lastName.matches("^[a-zA-Z]*$")) {
+            map.put("lastName","Please enter a valid Lastname");
+        }
+
+        //EMAIL
+        if(email.equals(""))
+            map.put("email","Please enter Email");
+        else if(!email.matches("^[a-zA-Z0-9]{1}([a-zA-Z0-9._*]*[a-zA-Z0-9]+)*@[a-zA-Z0-9]{1}([a-zA-Z0-9._*]*[a-zA-Z0-9]+)*$"))
+            map.put("email","Please enter a valid Email");
+
+        //PHONE NUMBER
+        if(phoneNumber.equals(""))
+            map.put("phoneNumber","Please enter a Phone Number");
+        else if(!phoneNumber.matches("^[0-9]{10}$"))
+            map.put("phoneNumber","Please enter Valid Phone Number");
+
+        //ADDRESS
+        if(address.equals(""))
+            map.put("address","Please enter your address");
+
+        //PASSWORD
+        if(password.equals(""))
+            map.put("password","Please enter password");
+        else if(password.matches("^[a-zA-Z0-9\\W]{6,20}$"))
+            map.put("password","Please enter minimum 6 characters");
+
+        if(type.equalsIgnoreCase("Seeker"))
         {
-            Do validation here for No of Children and Spouse Name)
+            //No OF CHILDREN
+            if(noOfChildren.equals(""))
+                map.put("noOfChildren","Please Enter no of children");
+            else if(!noOfChildren.matches("^[0-9]{1,8}$"))
+                map.put("noOfChildren","Please enter a valid number");
+
+            //SPOUSE NAME
+            if(!spouseName.equals("")) {
+                if(!spouseName.matches("^[a-zA-Z]+[a-zA-Z ]*[a-zA-Z]+$"))
+                    map.put("spouseName","Please enter a valid name");
+            }
         }
         else
         {
-            Do validation here for experience and expected pay.
+            //EXPERIENCE
+            if(experience.equals(""))
+                map.put("experience","Please enter Experience");
+            else if(!experience.matches("^[0-9]{1,8}$"))
+                map.put("experience","Please enter a valid experience number");
+
+            //EXPECTED PAY
+            if(expectedPay.equals(""))
+                map.put("expectedPay","Please enter Expected Pay");
+            else if(!expectedPay.matches("^[0-9]+([\\.]?[0-9]+)?$"))
+                map.put("expectedPay","Please enter a valid number");
         }
-         */
 
         /*
         Also we need to check if the user already exists in the database.
         if yes then we need to say that to the user.
          */
 
-        return new HashMap<String, String>();
-
+        return map;
     }
 }

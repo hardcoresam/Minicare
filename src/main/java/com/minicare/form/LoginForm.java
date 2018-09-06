@@ -21,18 +21,18 @@ public class LoginForm {
     }
 
     public HashMap<String,String> validate() {
+        HashMap<String,String> map = new HashMap<>();
 
-        //Think of someway to merge this with RegistrationForm. bcoz same methods we will be using for checking username and password.
+        //EMAIL
+        if(email.equals(""))
+            map.put("email","Please enter Email");
+        else if(!email.matches("^[a-zA-Z0-9]{1}([a-zA-Z0-9._*]*[a-zA-Z0-9]+)*@[a-zA-Z0-9]{1}([a-zA-Z0-9._*]*[a-zA-Z0-9]+)*$"))
+            map.put("email","Please enter a valid Email");
 
-        //Do validation here.
-        /*
-        Also we need to check if the user already exists in the database.
-        if yes then we need to say that to the user.
+        //PASSWORD
+        if(password.equals(""))
+            map.put("password","Please enter password");
 
-        Also if the user is there in the database already but his status is Inactive, then What should we do? - ASK
-         */
-
-        return new HashMap<String, String>();
-
+        return map;
     }
 }

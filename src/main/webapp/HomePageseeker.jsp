@@ -9,27 +9,27 @@
 <br><br>
 
 <form action="PostJob.jsp" method="POST">
-<div align="center"><input type = "submit" name="    " value="Post Job"></div>
+<div align="center"><input type = "submit" value="Post Job"></div>
 <br><br>
 </form>
 
 <form action="ListJobs.do" method="POST">
-<div align="center"><input type = "submit" name="    " value="List Jobs"></div>
+<div align="center"><input type = "submit" value="List Jobs"></div>
 <br><br>
 </form>
 
 <form action="EditProfile.do" method="POST">
-<div align="center"><input type = "submit" name="    " value="Edit Profile"></div>
+<div align="center"><input type = "submit" value="Edit Profile"></div>
 <br><br>
 </form>
 
 <form action="LogOut.do" method="POST">
-<div align="center"><input type = "submit" name="    " value="Log Out"></div>
+<div align="center"><input type = "submit" value="Log Out"></div>
 <br><br>
 </form>
 
 <form action="CloseAccount.do" method="POST" onsubmit="return confirm('Do you really want to close your Account?');">
-<div align="center"><input type = "submit" name="    " value="Close Account"></div>
+<div align="center"><input type = "submit" value="Close Account"></div>
 <br><br>
 </form>
 

@@ -1,6 +1,6 @@
 package com.minicare.dao;
 
-import com.mchange.v2.c3p0.*;
+//import com.mchange.v2.c3p0.*;
 
 import com.mysql.jdbc.Connection;
 

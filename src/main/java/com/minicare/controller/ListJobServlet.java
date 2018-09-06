@@ -29,8 +29,9 @@ public class ListJobServlet extends HttpServlet {
             SeekerService seekerService = new SeekerService();
             List<Job> list = seekerService.listJobs(member.getMemberId());
             if(list.isEmpty()) {
-                //Say to the user that You have not Posted any Job yet.
-                //Exception Handling Here
+                request.setAttribute("success","There are no jobs which you have posted yet.");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePageseeker.jsp");
+                requestDispatcher.forward(request, response);
             }
             else {
                 request.setAttribute("listOfJobs",list);

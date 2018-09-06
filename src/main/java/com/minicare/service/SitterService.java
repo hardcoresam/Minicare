@@ -45,6 +45,11 @@ public class SitterService {
     }
 
     public boolean closeAccount(int sitterId, String type) {
+
+        //1.update jobapplication set Status=? where SitterId=?
+        //2.update member set Status=? where MemberId=?
+        //So do these operations for the closing the account of sitter.
+
         MemberDAO memberDao = new MemberDAO();
         return memberDao.closeAccount(sitterId,type);
     }

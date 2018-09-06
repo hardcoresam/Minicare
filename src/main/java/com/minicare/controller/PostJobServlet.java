@@ -51,7 +51,7 @@ public class PostJobServlet extends HttpServlet {
                 SeekerService seekerService = new SeekerService();
                 if(seekerService.postJob(form,member.getMemberId())) {
                     request.setAttribute("success","Job Was Posted Successfully");
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePageseeker.jsp");  //Some Success Page Here
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePageseeker.jsp");
                     requestDispatcher.forward(request, response);
                 }
                 else {
@@ -61,6 +61,7 @@ public class PostJobServlet extends HttpServlet {
                 }
             }
             else {
+                request.setAttribute("form",form);
                 request.setAttribute("errors",map);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("PostJob.jsp");
                 requestDispatcher.forward(request, response);

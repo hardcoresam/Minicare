@@ -10,37 +10,37 @@
 <table border="0" align="center">
 <tr>
 <td>Enter Title:*</td>
-<td><input type="text" name="title" value="${requestScope.job.title}"></td>
+<td><input type="text" name="title" value="${requestScope.form.title}"></td>
 <td><c:out value='${errors["title"]}'/></td>
 </tr>
 
 <tr>
 <td>Enter Pay Per Hour:*</td>
-<td><input type="text" name="payPerHour" value="${requestScope.job.payPerHour}"></td>
+<td><input type="text" name="payPerHour" value="${requestScope.form.payPerHour}"></td>
 <td><c:out value='${errors["payPerHour"]}'/></td>
 </tr>
 
 <tr>
 <td>Enter Start Time:*</td>
-<td><input type="time" name="startTime" value="${requestScope.job.startTime}"></td>
+<td><input type="time" name="startTime" value="${requestScope.form.startTime}"></td>
 <td><c:out value='${errors["startTime"]}'/></td>
 </tr>
 
 <tr>
 <td>Enter End Time:*</td>
-<td><input type="time" name="endTime" value="${requestScope.job.endTime}"></td>
+<td><input type="time" name="endTime" value="${requestScope.form.endTime}"></td>
 <td><c:out value='${errors["endTime"]}'/></td>
 </tr>
 
 <tr>
 <td>Enter Start Date:*</td>
-<td><input type="date" name="startDate" value="${requestScope.job.startDate}"></td>
+<td><input type="date" name="startDate" value="${requestScope.form.startDate}"></td>
 <td><c:out value='${errors["startDate"]}'/></td>
 </tr>
 
 <tr>
 <td>Enter End Date:*</td>
-<td><input type="date" name="endDate" value="${requestScope.job.endDate}"></td>
+<td><input type="date" name="endDate" value="${requestScope.form.endDate}"></td>
 <td><c:out value='${errors["endDate"]}'/></td>
 </tr>
 
@@ -49,7 +49,7 @@
 <td><input type="reset" value="Clear"></td>
 </tr>
 
-<input type ="hidden" name="jobId" value="${requestScope.job.jobId}">
+<input type ="hidden" name="jobId" value="${requestScope.form.jobId}">
 
 </table>
 </form>

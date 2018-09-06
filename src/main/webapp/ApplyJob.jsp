@@ -10,8 +10,8 @@
 <table border="1" align="center">
 <tr>
 <td>Enter Expected Pay*:</td>
-<td><input type="text" name="expectedPay" value="${param.expectedPay}"></td>
-<td><c:out value='${errors["expectedPay"]}'/></td>
+<td><input type="text" name="expectedPay" value="${requestScope.expectedPay}"></td>
+<c:out value='${errors}'/>
 </tr>
 
 <tr>
@@ -19,7 +19,7 @@
 <td><input type="reset" value="Clear"></td>
 </tr>
 
-<input type = "hidden" name = "jobId" value = "${param.jobId}" >  //check this whether param is working or not?
+<input type = "hidden" name = "jobId" value = "${param.jobId}" >
 
 </table>
 </form>

@@ -25,9 +25,8 @@ public class AlterProfileServlet extends HttpServlet {
         String noOfChildren, spouseName, experience, expectedPay;
         noOfChildren = spouseName = experience = expectedPay = "";
 
-        if (type.equalsIgnoreCase("seeker")) {   //If not working, convert to upper case and try
+        if (type.equalsIgnoreCase("seeker")) {
             noOfChildren = request.getParameter(MemberConstants.NO_OF_CHILDREN);
-            System.err.println(noOfChildren);
             spouseName = request.getParameter(MemberConstants.SPOUSE_NAME);
         }
         else {
@@ -44,8 +43,6 @@ public class AlterProfileServlet extends HttpServlet {
 
         HashMap<String,String> map = alterForm.validate();
 
-
-
         if(map.isEmpty()) {
             RegistrationService regService = new RegistrationService();
             Member updatedMember = regService.alterProfile(alterForm);
@@ -58,9 +55,9 @@ public class AlterProfileServlet extends HttpServlet {
             request.setAttribute("success","Your Profile Was Updated Successfully");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePage"+ type.toLowerCase() +".jsp");
             requestDispatcher.forward(request, response);
-
         }
         else {
+            request.setAttribute("member",alterForm);
             request.setAttribute("errors",map);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("EditProfile.jsp");
             requestDispatcher.forward(request, response);

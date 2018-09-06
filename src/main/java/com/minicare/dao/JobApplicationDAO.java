@@ -119,15 +119,12 @@ public class JobApplicationDAO {
 
     public boolean deleteApplicationsById(int jobId) {
         Connection con=null;
-        boolean status = false;
         try {
             con = getConnection();
             PreparedStatement pst = con.prepareStatement("update jobapplication set Status = ? where JobId = ?");
             pst.setString(1,"INACTIVE");
             pst.setInt(2,jobId);
-            if(pst.executeUpdate()>0) {
-                status = true;
-            }
+            pst.executeUpdate();
         }
         catch(SQLException e) {
             System.out.println(e);
@@ -140,7 +137,7 @@ public class JobApplicationDAO {
                 System.out.println(e);
             }
         }
-        return status;
+        return true;
     }
 
     public List<ListApplicationDTO> listApplicationsForSeeker(int jobId) {

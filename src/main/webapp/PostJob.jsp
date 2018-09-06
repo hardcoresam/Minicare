@@ -10,37 +10,37 @@
 <table border="0" align="center">
 <tr>
 <td>Enter Title:*</td>
-<td><input type="text" name="title" value="${param.title}"></td>
+<td><input type="text" name="title" value="${form.title}"></td>
 <td><c:out value='${errors["title"]}'/></td>
 </tr>
 
 <tr>
 <td>Enter Pay Per Hour:*</td>
-<td><input type="text" name="payPerHour" value="${param.payPerHour}"></td>
+<td><input type="text" name="payPerHour" value="${form.payPerHour}"></td>
 <td><c:out value='${errors["payPerHour"]}'/></td>
 </tr>
 
 <tr>
 <td>Enter Start Time:*</td>
-<td><input type="time" name="startTime" value="${param.startTime}"></td>
+<td><input type="time" name="startTime" value="${form.startTime}"></td>
 <td><c:out value='${errors["startTime"]}'/></td>
 </tr>
 
 <tr>
 <td>Enter End Time:*</td>
-<td><input type="time" name="endTime" value="${param.endTime}"></td>
+<td><input type="time" name="endTime" value="${form.endTime}"></td>
 <td><c:out value='${errors["endTime"]}'/></td>
 </tr>
 
 <tr>
 <td>Enter Start Date:*</td>
-<td><input type="date" name="startDate" value="${param.startDate}"></td>
+<td><input type="date" name="startDate" value="${form.startDate}"></td>
 <td><c:out value='${errors["startDate"]}'/></td>
 </tr>
 
 <tr>
 <td>Enter End Date:*</td>
-<td><input type="date" name="endDate" value="${param.endDate}"></td>
+<td><input type="date" name="endDate" value="${form.endDate}"></td>
 <td><c:out value='${errors["endDate"]}'/></td>
 </tr>
 

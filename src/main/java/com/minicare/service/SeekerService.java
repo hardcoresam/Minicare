@@ -50,9 +50,6 @@ public class SeekerService {
     }
 
     public boolean deleteJob(int jobId) {
-
-        //Ask pranav that this operation should be performed in a single method or not?
-
         JobApplicationDAO jobApplicationDao = new JobApplicationDAO();
         if(jobApplicationDao.deleteApplicationsById(jobId)) {
             JobDAO jobDao = new JobDAO();
@@ -70,6 +67,12 @@ public class SeekerService {
     }
 
     public boolean closeAccount(int seekerId, String type) {
+
+        //1. update jobapplication set Status=? where JobId in (select JobId from job where SeekerId=?)
+        //2.update job set Status=? where SeekerId=?
+        //3.update member set Status=? where MemberId=?
+        //We should do the above operations for closing the account.
+        //so write code and call methods to perform the above operations.
 
         //Write Logic Here to close the applications of sitter first then jobs posted by this seeker, then mark the member as inactive.
         //also ask pranav about updating 2 tables in one operation - like the one above.
