@@ -61,12 +61,12 @@ public class PostJobForm {
 
         if(title.equals(""))
             map.put("title","Please enter Title");
-        else if(!title.matches("^[a-zA-Z]+[a-zA-Z ]*[a-zA-Z]+$")) //Change This(Spouse name and this is same)
-            map.put("title","Please enter a valid Title");
+        else if(!title.matches("^[a-zA-Z]+([a-zA-Z ]*[a-zA-Z]+)*$"))
+            map.put("title","Title should contain only characters");
 
         if(payPerHour.equals(""))
             map.put("payPerHour","Please enter Pay Per Hour");
-        else if(!payPerHour.matches("^[0-9]+([\\.]?[0-9]+)?$"))
+        else if(!payPerHour.matches("^0$|^[1-9]+([\\.]?[0-9]+)?$"))
             map.put("payPerHour","Please enter a valid Number");
 
 

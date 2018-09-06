@@ -36,7 +36,7 @@
     </td>
 </form>
 
-<form action="MessageFromSeeker.do" method="POST">
+<form action="SendMessage.do" method="POST">
     <input type = "hidden" name = "seekerId" value = "${jobDto.seekerId}" >
     <td>
         <input type= "submit" value= "Message Him">

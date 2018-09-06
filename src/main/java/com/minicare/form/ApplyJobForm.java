@@ -1,7 +1,5 @@
 package com.minicare.form;
 
-import java.util.HashMap;
-
 public class ApplyJobForm {
     private String expectedPay;
     private int jobId;
@@ -30,7 +28,7 @@ public class ApplyJobForm {
 
         if(expectedPay.equals(""))
             error = "Please enter Expected Pay";
-        else if(!expectedPay.matches("^[0-9]+([\\.]?[0-9]+)?$"))
+        else if(!expectedPay.matches("^0$|^[1-9]+([\\.]?[0-9]+)?$"))
             error = "Please enter a valid number";
 
         return error;

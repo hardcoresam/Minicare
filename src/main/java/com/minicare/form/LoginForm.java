@@ -26,7 +26,7 @@ public class LoginForm {
         //EMAIL
         if(email.equals(""))
             map.put("email","Please enter Email");
-        else if(!email.matches("^[a-zA-Z0-9]{1}([a-zA-Z0-9._*]*[a-zA-Z0-9]+)*@[a-zA-Z0-9]{1}([a-zA-Z0-9._*]*[a-zA-Z0-9]+)*$"))
+        else if(!email.matches("^[a-zA-Z0-9]{1}([a-zA-Z0-9.-_*]*[a-zA-Z0-9]+)*@[a-zA-Z0-9]{1}([a-zA-Z0-9.-_*]*[a-zA-Z0-9]+)*$"))
             map.put("email","Please enter a valid Email");
 
         //PASSWORD

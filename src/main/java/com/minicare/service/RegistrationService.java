@@ -43,6 +43,11 @@ public class RegistrationService {
         }
     }
 
+    public boolean isEmailRegistered(String email) {
+        MemberDAO memberDao = new MemberDAO();
+        return memberDao.isEmailRegistered(email);
+    }
+
     public Member fetchMember(LoginForm loginForm) {
         MemberDAO memberDao = new MemberDAO();
         Member member = memberDao.fetchMember(loginForm);

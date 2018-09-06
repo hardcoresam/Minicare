@@ -22,7 +22,7 @@
 <td>${application.status}</td>
 <td>${application.expectedPay}</td>
 
-<form action="MessageFromSeeker.do" method="POST">
+<form action="SendMessage.do" method="POST">
     <input type = "hidden" name = "sitterId" value = "${application.sitterId}" >
     <td>
         <input type= "submit" value= "Message Him">

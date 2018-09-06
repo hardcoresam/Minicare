@@ -14,9 +14,6 @@ public class AlterProfileForm {
     private String expectedPay;
     private String type;
 
-    private String email;  //
-    private String password;  //
-
     public AlterProfileForm(int memberId, String firstName, String lastName, String phoneNumber, String address, String noOfChildren,
                             String spouseName, String experience, String expectedPay, String type) {
         this.memberId = memberId;
@@ -77,11 +74,11 @@ public class AlterProfileForm {
         if(firstName.equals(""))
             map.put("firstName","Please Enter Firstname");
         else if(!firstName.matches("^[a-zA-Z]+$"))
-            map.put("firstName","Please enter a valid Firstname");
+            map.put("firstName","Firstname must only have characters");
 
         //LASTNAME
         if(!lastName.matches("^[a-zA-Z]*$")) {
-            map.put("lastName","Please enter a valid Lastname");
+            map.put("lastName","Lastname must only have characters");
         }
 
         //PHONE NUMBER
@@ -99,13 +96,13 @@ public class AlterProfileForm {
             //No OF CHILDREN
             if(noOfChildren.equals(""))
                 map.put("noOfChildren","Please Enter no of children");
-            else if(!noOfChildren.matches("^[0-9]{1,8}$"))
-                map.put("noOfChildren","Please enter a valid number");
+            else if(!noOfChildren.matches("^0$|^[1-9][0-9]{0,9}$"))
+                map.put("noOfChildren","No of Children must contain only numbers with no preceding zeroes");
 
             //SPOUSE NAME
             if(!spouseName.equals("")) {
-                if(!spouseName.matches("^[a-zA-Z]+[a-zA-Z ]*[a-zA-Z]+$"))
-                    map.put("spouseName","Please enter a valid name");
+                if(!spouseName.matches("^[a-zA-Z]+([a-zA-Z ]*[a-zA-Z]+)*$"))
+                    map.put("spouseName","Spouse Name must contain only characters");
             }
         }
         else
@@ -113,14 +110,14 @@ public class AlterProfileForm {
             //EXPERIENCE
             if(experience.equals(""))
                 map.put("experience","Please enter Experience");
-            else if(!experience.matches("^[0-9]{1,8}$"))
-                map.put("experience","Please enter a valid experience number");
+            else if(!experience.matches("^0$|^[1-9][0-9]{0,9}$"))
+                map.put("experience","Experience must contain only numbers with no preceding zeroes");
 
             //EXPECTED PAY
             if(expectedPay.equals(""))
                 map.put("expectedPay","Please enter Expected Pay");
-            else if(!expectedPay.matches("^[0-9]+([\\.]?[0-9]+)?$"))
-                map.put("expectedPay","Please enter a valid number");
+            else if(!expectedPay.matches("^0$|^[1-9]+([\\.]?[0-9]+)?$"))
+                map.put("expectedPay","Expected Pay must contain only digits");
         }
 
         return map;

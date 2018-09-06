@@ -24,6 +24,32 @@ public class MemberDAO {
     //Do Password Hashing.....
     //Chnage the variable Names .
 
+    public boolean isEmailRegistered(String email) {
+        boolean status = false;
+        Connection con=null;
+        try {
+            con = getConnection();
+            PreparedStatement pst = con.prepareStatement("select MemberId from member where Email=?");
+            pst.setString(1,email);
+            ResultSet resultSet = pst.executeQuery();
+            if(resultSet.next()) {
+                status = true;
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e);
+        }
+        finally {
+            try {
+                con.close();
+            }
+            catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return status;
+    }
+
     public int registerUser(Member member) {
         int status=0;
         int memberId = -1;

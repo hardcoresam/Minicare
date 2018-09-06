@@ -1,5 +1,7 @@
 package com.minicare.form;
 
+import com.minicare.service.RegistrationService;
+
 import java.util.HashMap;
 
 public class RegistrationForm {
@@ -75,30 +77,39 @@ public class RegistrationForm {
     }
 
     public HashMap<String,String> validate() {
+        //CHANGE THE NAME OF MAP TO ERRORS OR ERROR.
         HashMap<String,String> map = new HashMap<>();
+
+        //Ask if i should keep each validation in a seperate method?
 
         //FIRSTNAME
         if(firstName.equals(""))
             map.put("firstName","Please Enter Firstname");
         else if(!firstName.matches("^[a-zA-Z]+$"))
-            map.put("firstName","Please enter a valid Firstname");
+            map.put("firstName","Firstname must only have characters");
 
         //LASTNAME
         if(!lastName.matches("^[a-zA-Z]*$")) {
-            map.put("lastName","Please enter a valid Lastname");
+            map.put("lastName","Lastname must only have characters");
         }
 
         //EMAIL
         if(email.equals(""))
             map.put("email","Please enter Email");
-        else if(!email.matches("^[a-zA-Z0-9]{1}([a-zA-Z0-9._*]*[a-zA-Z0-9]+)*@[a-zA-Z0-9]{1}([a-zA-Z0-9._*]*[a-zA-Z0-9]+)*$"))
+        else if(!email.matches("^[a-zA-Z0-9]{1}([a-zA-Z0-9.-_*]*[a-zA-Z0-9]+)*@[a-zA-Z0-9]{1}([a-zA-Z0-9.-_*]*[a-zA-Z0-9]+)*$"))
             map.put("email","Please enter a valid Email");
+        else {
+            //Check this.
+            RegistrationService registrationService = new RegistrationService();
+            if(registrationService.isEmailRegistered(email))
+                map.put("email", "An Account already exists with given EmailId");
+        }
 
         //PHONE NUMBER
         if(phoneNumber.equals(""))
             map.put("phoneNumber","Please enter a Phone Number");
         else if(!phoneNumber.matches("^[0-9]{10}$"))
-            map.put("phoneNumber","Please enter Valid Phone Number");
+            map.put("phoneNumber","Phone Number must contain only 10 digits");
 
         //ADDRESS
         if(address.equals(""))
@@ -115,13 +126,13 @@ public class RegistrationForm {
             //No OF CHILDREN
             if(noOfChildren.equals(""))
                 map.put("noOfChildren","Please Enter no of children");
-            else if(!noOfChildren.matches("^[0-9]{1,8}$"))
-                map.put("noOfChildren","Please enter a valid number");
+            else if(!noOfChildren.matches("^0$|^[1-9][0-9]{0,9}$"))
+                map.put("noOfChildren","No of Children must contain only numbers with no preceding zeroes");
 
             //SPOUSE NAME
             if(!spouseName.equals("")) {
-                if(!spouseName.matches("^[a-zA-Z]+[a-zA-Z ]*[a-zA-Z]+$"))
-                    map.put("spouseName","Please enter a valid name");
+                if(!spouseName.matches("^[a-zA-Z]+([a-zA-Z ]*[a-zA-Z]+)*$"))
+                    map.put("spouseName","Spouse Name must contain only characters");
             }
         }
         else
@@ -129,21 +140,15 @@ public class RegistrationForm {
             //EXPERIENCE
             if(experience.equals(""))
                 map.put("experience","Please enter Experience");
-            else if(!experience.matches("^[0-9]{1,8}$"))
-                map.put("experience","Please enter a valid experience number");
+            else if(!experience.matches("^0$|^[1-9][0-9]{0,9}$"))
+                map.put("experience","Experience must contain only numbers with no preceding zeroes");
 
             //EXPECTED PAY
             if(expectedPay.equals(""))
                 map.put("expectedPay","Please enter Expected Pay");
-            else if(!expectedPay.matches("^[0-9]+([\\.]?[0-9]+)?$"))
-                map.put("expectedPay","Please enter a valid number");
+            else if(!expectedPay.matches("^0$|^[1-9]+([\\.]?[0-9]+)?$"))
+                map.put("expectedPay","Expected Pay must contain only digits");
         }
-
-        /*
-        Also we need to check if the user already exists in the database.
-        if yes then we need to say that to the user.
-         */
-
         return map;
     }
 }
