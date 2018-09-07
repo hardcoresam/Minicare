@@ -21,8 +21,6 @@ public class AlterJobServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         Member member = (Member)session.getAttribute("member");
         if(member == null) {
-            //Ask whether this checking should be done here or in the PostJob.jsp itself?
-
             request.setAttribute("loginError","Please Login First");
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp ");
@@ -48,7 +46,10 @@ public class AlterJobServlet extends HttpServlet {
                 SeekerService seekerService = new SeekerService();
                 if(seekerService.alterJob(form)) {
 
-                    //request.setAttribute("success","Job Was Edited Successfully");    //How to display this????
+
+                    request.setAttribute("successMsg","Job Was Edited Successfully");
+
+
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListJobs.do");
                     requestDispatcher.forward(request, response);
                 }

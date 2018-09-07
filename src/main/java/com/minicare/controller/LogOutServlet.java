@@ -28,5 +28,3 @@ public class LogOutServlet extends HttpServlet {
         }
     }
 }
-
-//Use the same page for the Logout in Sitter also.

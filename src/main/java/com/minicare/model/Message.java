@@ -1,11 +1,15 @@
 package com.minicare.model;
+import java.sql.Time;
 
 public class Message {
     private int messageId;
     private int conversationId;
     private String content;
+    private Time time;
 
-    // Check whether we should have Some others also here - CHECK DATABASE.
+    //Ask pranav to use a DTO or this only bcoz we are adding firstName field here which is not there in message table.
+
+    private String firstName;
 
     public Message() {}
 
@@ -37,5 +41,21 @@ public class Message {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 }

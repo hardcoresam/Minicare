@@ -34,6 +34,10 @@ public class ListJobServlet extends HttpServlet {
                 requestDispatcher.forward(request, response);
             }
             else {
+                //This code is for - when we have no applications, we would forward to this page only.So for that, we use this.
+                String successMsg = (String)request.getAttribute("successMsg");
+                request.setAttribute("successMsg",successMsg);
+
                 request.setAttribute("listOfJobs",list);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListJobs.jsp");
                 requestDispatcher.forward(request, response);

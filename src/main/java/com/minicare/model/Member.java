@@ -28,12 +28,9 @@ public class Member {
         this.status = Status.ACTIVE;    //Is this correct? Think while retrieving rows from database.
     }
 
-    //Here What about the enum types and member id.
-
-    //Think Why do you want these Setter Methods. If no use then remove them.
     public int getMemberId() {
         return memberId;
-    }   // Are these Required?
+    }
 
     public void setMemberId(int memberId) {
         this.memberId = memberId;

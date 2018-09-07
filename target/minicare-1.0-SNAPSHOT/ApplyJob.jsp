@@ -11,7 +11,7 @@
 <tr>
 <td>Enter Expected Pay*:</td>
 <td><input type="text" name="expectedPay" value="${requestScope.expectedPay}"></td>
-<c:out value='${errors}'/>
+<font color="red"><c:out value='${errors}'/></font>
 </tr>
 
 <tr>

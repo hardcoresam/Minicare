@@ -14,7 +14,6 @@
 <th>Title</th>
 <th>Expected Pay</th>
 <th>Pay Per Hour</th>
-<th>Status</th>
 <th>Action</th>
 <th>Message</th>
 </tr>
@@ -26,7 +25,6 @@
 <td>${jobDto.title}</td>
 <td>${jobDto.expectedPay}</td>
 <td>${jobDto.payPerHour}</td>
-<td>${jobDto.status}</td>
 
 <form action="DeleteApplication.do" method="POST" onsubmit="return confirm('Do you really want to delete this Application?');">
     <input type = "hidden" name = "applicationId" value = "${jobDto.applicationId}" >
@@ -42,7 +40,6 @@
         <input type= "submit" value= "Message Him">
     </td>
 </form>
-
 
 </tr>
 

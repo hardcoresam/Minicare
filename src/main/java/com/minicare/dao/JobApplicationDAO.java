@@ -2,33 +2,24 @@ package com.minicare.dao;
 
 import com.minicare.dto.JobApplicationDTO;
 import com.minicare.dto.ListApplicationDTO;
-import com.minicare.form.ApplyJobForm;
-import com.minicare.model.Job;
 import com.minicare.model.JobApplication;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+import javax.naming.NamingException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JobApplicationDAO {
 
-    public static Connection getConnection() {
-        Connection con=null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con= DriverManager.getConnection("jdbc:mysql://localhost:3306/care","root","password");
-        }
-        catch(Exception e) {
-            System.out.println(e);
-        }
-        return con;
-    }
-
     public boolean applyJob(JobApplication application) {
         boolean status = false;
-        Connection con=null;
         try {
-            con = getConnection();
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/care");
+            Connection con = ds.getConnection();
             PreparedStatement pst = con.prepareStatement("insert into jobapplication (JobId, SitterId, ExpectedPay) values (?,?,?)");
             pst.setInt(1,application.getJobId());
             pst.setInt(2,application.getSitterId());
@@ -37,25 +28,18 @@ public class JobApplicationDAO {
                 status = true;
             }
         }
-        catch(SQLException e) {
+        catch (SQLException|NamingException e) {
             System.out.println(e);
-        }
-        finally {
-            try {
-                con.close();
-            }
-            catch (SQLException e) {
-                System.out.println(e);
-            }
         }
         return status;
     }
 
     public List<JobApplicationDTO> listApplications(int sitterId) {
         List<JobApplicationDTO> list = new ArrayList<JobApplicationDTO>();
-        Connection con=null;
         try {
-            con = getConnection();
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/care");
+            Connection con = ds.getConnection();
             PreparedStatement pst = con.prepareStatement("select job.Title, jobapplication.ExpectedPay, job.PayPerHour, job.Status, " +
                     "job.JobId, jobapplication.ApplicationId, job.SeekerId from job inner join jobapplication on job.JobId=jobapplication.JobId where " +
                     "jobapplication.SitterId=? and jobapplication.Status=?");
@@ -77,25 +61,18 @@ public class JobApplicationDAO {
             }
 
         }
-        catch(SQLException e) {
+        catch (SQLException|NamingException e) {
             System.out.println(e);
-        }
-        finally {
-            try {
-                con.close();
-            }
-            catch (SQLException e) {
-                System.out.println(e);
-            }
         }
         return list;
     }
 
     public boolean deleteApplication(int applicationId) {
-        Connection con=null;
         boolean status = false;
         try {
-            con = getConnection();
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/care");
+            Connection con = ds.getConnection();
             PreparedStatement pst = con.prepareStatement("update jobapplication set Status = ? where ApplicationId = ?");
             pst.setString(1,"INACTIVE");
             pst.setInt(2,applicationId);
@@ -103,52 +80,55 @@ public class JobApplicationDAO {
                 status = true;
             }
         }
-        catch(SQLException e) {
+        catch (SQLException|NamingException e) {
             System.out.println(e);
-        }
-        finally {
-            try {
-                con.close();
-            }
-            catch (SQLException e) {
-                System.out.println(e);
-            }
         }
         return status;
     }
 
     public boolean deleteApplicationsById(int jobId) {
-        Connection con=null;
         try {
-            con = getConnection();
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/care");
+            Connection con = ds.getConnection();
             PreparedStatement pst = con.prepareStatement("update jobapplication set Status = ? where JobId = ?");
             pst.setString(1,"INACTIVE");
             pst.setInt(2,jobId);
             pst.executeUpdate();
         }
-        catch(SQLException e) {
+        catch (SQLException|NamingException e) {
             System.out.println(e);
         }
-        finally {
-            try {
-                con.close();
-            }
-            catch (SQLException e) {
-                System.out.println(e);
-            }
+        return true;
+    }
+
+    public boolean deleteApplicationsBySitterId(int sitterId) {
+        try {
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/care");
+            Connection con = ds.getConnection();
+            PreparedStatement pst = con.prepareStatement("update jobapplication set Status=? where SitterId=?");
+            pst.setString(1, "INACTIVE");
+            pst.setInt(2, sitterId);
+            pst.executeUpdate();
+        }
+        catch (SQLException|NamingException e) {
+            System.out.println(e);
         }
         return true;
     }
 
     public List<ListApplicationDTO> listApplicationsForSeeker(int jobId) {
         List<ListApplicationDTO> list = new ArrayList<ListApplicationDTO>();
-        Connection con=null;
         try {
-            con = getConnection();
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/care");
+            Connection con = ds.getConnection();
             PreparedStatement pst = con.prepareStatement("select member.FirstName, jobapplication.Status, jobapplication.ExpectedPay, " +
                     "job.Title, jobapplication.SitterId from jobapplication inner join job on jobapplication.JobId=job.JobId inner join member " +
-                    "on jobapplication.SitterId=member.MemberId where jobapplication.JobId=?");
+                    "on jobapplication.SitterId=member.MemberId where jobapplication.JobId=? and jobapplication.Status=?");
             pst.setInt(1,jobId);
+            pst.setString(2,"ACTIVE");
             ResultSet resultSet = pst.executeQuery();
 
             while(resultSet.next()) {
@@ -162,16 +142,8 @@ public class JobApplicationDAO {
                 list.add(listApplication);
             }
         }
-        catch(SQLException e) {
+        catch (SQLException|NamingException e) {
             System.out.println(e);
-        }
-        finally {
-            try {
-                con.close();
-            }
-            catch (SQLException e) {
-                System.out.println(e);
-            }
         }
         return list;
     }

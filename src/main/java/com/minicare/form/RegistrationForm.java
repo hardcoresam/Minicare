@@ -1,6 +1,6 @@
 package com.minicare.form;
 
-import com.minicare.service.RegistrationService;
+import com.minicare.service.MemberService;
 
 import java.util.HashMap;
 
@@ -100,7 +100,7 @@ public class RegistrationForm {
             map.put("email","Please enter a valid Email");
         else {
             //Check this.
-            RegistrationService registrationService = new RegistrationService();
+            MemberService registrationService = new MemberService();
             if(registrationService.isEmailRegistered(email))
                 map.put("email", "An Account already exists with given EmailId");
         }
@@ -118,7 +118,7 @@ public class RegistrationForm {
         //PASSWORD
         if(password.equals(""))
             map.put("password","Please enter password");
-        else if(password.matches("^[a-zA-Z0-9\\W]{6,20}$"))
+        else if(!password.matches("^[a-zA-Z0-9\\W]{6,20}$"))
             map.put("password","Please enter minimum 6 characters");
 
         if(type.equalsIgnoreCase("Seeker"))
@@ -126,22 +126,22 @@ public class RegistrationForm {
             //No OF CHILDREN
             if(noOfChildren.equals(""))
                 map.put("noOfChildren","Please Enter no of children");
-            else if(!noOfChildren.matches("^0$|^[1-9][0-9]{0,9}$"))
+            else if(!noOfChildren.matches("^0$|^[1-9][0-9]{0,3}$"))
                 map.put("noOfChildren","No of Children must contain only numbers with no preceding zeroes");
 
             //SPOUSE NAME
-            if(!spouseName.equals("")) {
-                if(!spouseName.matches("^[a-zA-Z]+([a-zA-Z ]*[a-zA-Z]+)*$"))
+            if(spouseName.equals(""))
+                map.put("spouseName","Please Enter Spouse Name");
+            else if(!spouseName.matches("^[a-zA-Z]+([a-zA-Z ]*[a-zA-Z]+)*$"))
                     map.put("spouseName","Spouse Name must contain only characters");
-            }
         }
         else
         {
             //EXPERIENCE
             if(experience.equals(""))
                 map.put("experience","Please enter Experience");
-            else if(!experience.matches("^0$|^[1-9][0-9]{0,9}$"))
-                map.put("experience","Experience must contain only numbers with no preceding zeroes");
+            else if(!experience.matches("^0$|^[1-9]+([\\.]?[0-9]+)?$"))
+                map.put("experience","Experience must contain only digits");
 
             //EXPECTED PAY
             if(expectedPay.equals(""))

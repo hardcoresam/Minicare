@@ -2,7 +2,7 @@ package com.minicare.controller;
 
 import com.minicare.form.AlterProfileForm;
 import com.minicare.model.Member;
-import com.minicare.service.RegistrationService;
+import com.minicare.service.MemberService;
 import com.minicare.util.MemberConstants;
 
 import javax.servlet.RequestDispatcher;
@@ -44,7 +44,7 @@ public class AlterProfileServlet extends HttpServlet {
         HashMap<String,String> map = alterForm.validate();
 
         if(map.isEmpty()) {
-            RegistrationService regService = new RegistrationService();
+            MemberService regService = new MemberService();
             Member updatedMember = regService.alterProfile(alterForm);
 
             //ASK IF THIS APPROACH IS CORRECT OR NOT.

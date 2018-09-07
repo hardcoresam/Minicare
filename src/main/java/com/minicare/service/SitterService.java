@@ -15,8 +15,7 @@ import java.util.List;
 public class SitterService {
     public Sitter fetchMember(int sitterId) {
         SitterDAO sitterDao = new SitterDAO();
-        Sitter sitter = sitterDao.getSitterById(sitterId);
-        return sitter;
+        return sitterDao.getSitterById(sitterId);
     }
 
     public List<Job> listActiveJobs(int sitterId) {
@@ -44,13 +43,11 @@ public class SitterService {
         return jobApplicationDao.deleteApplication(applicationId);
     }
 
-    public boolean closeAccount(int sitterId, String type) {
-
-        //1.update jobapplication set Status=? where SitterId=?
-        //2.update member set Status=? where MemberId=?
-        //So do these operations for the closing the account of sitter.
+    public boolean closeAccount(int sitterId) {
+        JobApplicationDAO jobApplicationDao = new JobApplicationDAO();
+        jobApplicationDao.deleteApplicationsBySitterId(sitterId);
 
         MemberDAO memberDao = new MemberDAO();
-        return memberDao.closeAccount(sitterId,type);
+        return memberDao.closeAccount(sitterId);
     }
 }

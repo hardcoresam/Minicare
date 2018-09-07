@@ -6,7 +6,6 @@ com\minicare\form\LoginForm.class
 com\minicare\model\Member.class
 com\minicare\controller\ApplyJobServlet.class
 com\minicare\model\Job$Status.class
-com\minicare\controller\MessageFromSeeker.class
 com\minicare\model\Member$Status.class
 com\minicare\dto\JobApplicationDTO$Status.class
 com\minicare\form\PostJobForm.class
@@ -14,10 +13,11 @@ com\minicare\service\SeekerService.class
 com\minicare\controller\AlterJobServlet.class
 com\minicare\model\JobApplication.class
 com\minicare\service\SitterService.class
-com\minicare\service\RegistrationService.class
+com\minicare\controller\SendMessageServlet.class
 com\minicare\controller\GetMessages.class
 com\minicare\dao\MemberDAO.class
 com\minicare\model\Sitter.class
+com\minicare\util\ConnectionUtil.class
 com\minicare\controller\DeleteApplicationServlet.class
 com\minicare\dao\JobDAO.class
 com\minicare\dao\SitterDAO.class
@@ -40,7 +40,7 @@ com\minicare\dao\SeekerDAO.class
 com\minicare\dto\ListApplicationDTO$Status.class
 com\minicare\util\MemberConstants.class
 com\minicare\form\ApplyJobForm.class
-com\minicare\util\Regex.class
+com\minicare\service\MemberService.class
 com\minicare\model\Member$MemberType.class
 com\minicare\controller\AlterProfileServlet.class
 com\minicare\controller\EditJobServlet.class

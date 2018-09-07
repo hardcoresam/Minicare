@@ -37,7 +37,7 @@ public class StoreMessageServlet extends HttpServlet {
             else {
                 int conversationId = Integer.parseInt(request.getParameter("conversationId"));
                 SeekerService seekerService = new SeekerService();
-                if(seekerService.storeMessage(conversationId,content)) {
+                if(seekerService.storeMessage(conversationId,content,member.getMemberId())) {
                     request.setAttribute("conversationId", conversationId);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("GetMessages.do");
                     dispatcher.forward(request, response);

@@ -3,25 +3,18 @@ package com.minicare.dao;
 import com.minicare.model.Seeker;
 
 import java.sql.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public class SeekerDAO {
-    public static Connection getConnection() {
-        Connection con=null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con= DriverManager.getConnection("jdbc:mysql://localhost:3306/care","root","password");
-        }
-        catch(Exception e) {
-            System.out.println(e);
-        }
-        return con;
-    }
-
     public Seeker getSeekerById(int seekerId) {
         Seeker seeker = null;
-        Connection con=null;
         try {
-            con = getConnection();
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/care");
+            Connection con = ds.getConnection();
             PreparedStatement pst = con.prepareStatement("select * from seeker where SeekerId=?");
             pst.setInt(1,seekerId);
             ResultSet resultSet = pst.executeQuery();
@@ -31,16 +24,8 @@ public class SeekerDAO {
                 seeker.setSpouseName(resultSet.getString(3));
             }
         }
-        catch(SQLException e) {
+        catch (SQLException|NamingException e) {
             System.out.println(e);
-        }
-        finally {
-            try {
-                con.close();
-            }
-            catch (SQLException e) {
-                System.out.println(e);
-            }
         }
         return seeker;
     }

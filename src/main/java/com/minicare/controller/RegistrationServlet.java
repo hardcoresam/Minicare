@@ -2,7 +2,7 @@ package com.minicare.controller;
 
 import com.minicare.form.RegistrationForm;
 import com.minicare.model.Member;
-import com.minicare.service.RegistrationService;
+import com.minicare.service.MemberService;
 import com.minicare.util.MemberConstants;
 
 import javax.servlet.RequestDispatcher;
@@ -41,8 +41,8 @@ public class RegistrationServlet extends HttpServlet {
         HashMap<String,String> map = regForm.validate();
 
         if(map.isEmpty()) {
-            RegistrationService regService = new RegistrationService();    //Name should be different i.e only 5 service layers
-            Member member = regService.registerUser(regForm);
+            MemberService memberService = new MemberService();
+            Member member = memberService.registerUser(regForm);
             if(member != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("member",member);

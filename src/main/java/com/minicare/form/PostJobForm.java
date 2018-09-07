@@ -78,6 +78,14 @@ public class PostJobForm {
             } catch (IllegalArgumentException e) {
                 map.put("startDate", "Please enter Valid date in the Correct Format");
             }
+
+            //Checking startDate Should be either today or after today's date.
+            if(startDate1 != null) {
+                java.util.Date date=new java.util.Date();
+                if(!startDate1.after(date)) {
+                    map.put("startDate","Start Date should be greater than Today's date");
+                }
+            }
         }
 
 

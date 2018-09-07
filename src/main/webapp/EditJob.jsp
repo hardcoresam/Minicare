@@ -11,37 +11,37 @@
 <tr>
 <td>Enter Title:*</td>
 <td><input type="text" name="title" value="${requestScope.form.title}"></td>
-<td><c:out value='${errors["title"]}'/></td>
+<td><font color="red"><c:out value='${errors["title"]}'/></font></td>
 </tr>
 
 <tr>
 <td>Enter Pay Per Hour:*</td>
 <td><input type="text" name="payPerHour" value="${requestScope.form.payPerHour}"></td>
-<td><c:out value='${errors["payPerHour"]}'/></td>
+<td><font color="red"><c:out value='${errors["payPerHour"]}'/></font></td>
 </tr>
 
 <tr>
 <td>Enter Start Time:*</td>
 <td><input type="time" name="startTime" value="${requestScope.form.startTime}"></td>
-<td><c:out value='${errors["startTime"]}'/></td>
+<td><font color="red"><c:out value='${errors["startTime"]}'/></font></td>
 </tr>
 
 <tr>
 <td>Enter End Time:*</td>
 <td><input type="time" name="endTime" value="${requestScope.form.endTime}"></td>
-<td><c:out value='${errors["endTime"]}'/></td>
+<td><font color="red"><c:out value='${errors["endTime"]}'/></font></td>
 </tr>
 
 <tr>
 <td>Enter Start Date:*</td>
 <td><input type="date" name="startDate" value="${requestScope.form.startDate}"></td>
-<td><c:out value='${errors["startDate"]}'/></td>
+<td><font color="red"><c:out value='${errors["startDate"]}'/></font></td>
 </tr>
 
 <tr>
 <td>Enter End Date:*</td>
 <td><input type="date" name="endDate" value="${requestScope.form.endDate}"></td>
-<td><c:out value='${errors["endDate"]}'/></td>
+<td><font color="red"><c:out value='${errors["endDate"]}'/></font></td>
 </tr>
 
 <tr>

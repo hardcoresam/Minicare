@@ -5,13 +5,18 @@
 <h1 align="center">Messaging</h1>
 <hr><br><br>
 
-<table border="1" align="center">
+<table align="center" cellspacing="10">
+<th align="left">Message</th>
+<th align="left">Username</th>
+<th align="left">Time</th>
 
 <c:forEach items="${requestScope.listOfMessages}" var="message">
 
 <tr>
 
 <td>${message.content}</td>
+<td>${message.firstName}</td>
+<td>${message.time}</td>
 
 </tr>
 

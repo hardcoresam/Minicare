@@ -29,7 +29,7 @@
 <td>${job.endTime}</td>
 
 <form action="ApplyJob.jsp" method="POST">
-    <input type = "hidden" name = "jobId" value = "${job.jobId}" > //Check this.
+    <input type = "hidden" name = "jobId" value = "${job.jobId}" >
     <td>
         <input type= "submit" value= "Apply">
     </td>

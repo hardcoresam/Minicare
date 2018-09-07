@@ -2,7 +2,6 @@ package com.minicare.controller;
 
 import com.minicare.form.PostJobForm;
 import com.minicare.model.Member;
-import com.minicare.service.RegistrationService;
 import com.minicare.service.SeekerService;
 import com.minicare.util.MemberConstants;
 
@@ -16,26 +15,16 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class PostJobServlet extends HttpServlet {
-    //May be take all the code of Checking whether user is logged in or not and keep it in another static method in util class
-    //and you can use that here.
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
         Member member = (Member)session.getAttribute("member");
         if(member == null) {
-            //Ask whether this checking should be done here or in the PostJob.jsp itself?
-
             request.setAttribute("loginError","Please Login First");
-            //So while creating Login jsp Page, include this stmnt in the starting so that user will understand.
-            // <c:out value="${param.loginError}"/>
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp ");
             dispatcher.forward(request,response);
         }
-
-        //if the above if Condition executes then directly forwards kada, So check whether we can write all the below
-        //code without else block or not.
-
         else {
             String title = request.getParameter(MemberConstants.TITLE);
             String payPerHour = request.getParameter(MemberConstants.PAY_PER_HOUR);

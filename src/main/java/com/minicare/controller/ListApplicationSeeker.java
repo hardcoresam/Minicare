@@ -19,11 +19,7 @@ public class ListApplicationSeeker extends HttpServlet {
         HttpSession session = request.getSession(false);
         Member member = (Member) session.getAttribute("member");
         if (member == null) {
-            //Ask whether this checking should be done here or in the PostJob.jsp itself?
-
             request.setAttribute("loginError", "Please Login First");
-            //So while creating Login jsp Page, include this stmnt in the starting so that user will understand.
-            // <c:out value="${param.loginError}"/>
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
             dispatcher.forward(request, response);
@@ -34,9 +30,15 @@ public class ListApplicationSeeker extends HttpServlet {
             SeekerService seekerService = new SeekerService();
             List<ListApplicationDTO> list = seekerService.listApplications(jobId);
             if(list.isEmpty()) {
+                request.setAttribute("successMsg","There are no applications for this job yet.");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListJobs.do");
+                requestDispatcher.forward(request, response);
+
+                /*
                 request.setAttribute("success","There are no applications for this job yet.");
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePageseeker.jsp");
                 requestDispatcher.forward(request, response);
+                */
             }
             else {
                 request.setAttribute("listOfApplications",list);

@@ -9,8 +9,7 @@ public class Seeker extends Member {
     public Seeker(String firstName, String lastName, String email, String phoneNumber, String address,
                   String password, int noOfChildren, String spouseName) {
         super(firstName, lastName, email, phoneNumber, address, password, MemberType.SEEKER);
-        this.noOfChildren = noOfChildren;    //This will be an empty String if we dont pass anything in the form page.
-                                            // if we dont pass anything then null should be stored here not empty string.
+        this.noOfChildren = noOfChildren;
         this.spouseName = spouseName;
     }
 

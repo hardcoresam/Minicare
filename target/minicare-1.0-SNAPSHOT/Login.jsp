@@ -12,19 +12,19 @@
 <table border="0" align="center">
 
 <tr>
-<td><c:out value='${loginError}'/></td>
+<td><font color="red"><c:out value='${loginError}'/></font></td>
 </tr>
 
 <tr>
 <td>Enter Email:*</td>
 <td><input type="text" name="email" value="${param.email}"></td>
-<td><c:out value='${errors["email"]}'/></td>
+<td><font color="red"><c:out value='${errors["email"]}'/></font></td>
 </tr>
 
 <tr>
 <td>Enter Password:*</td>
 <td><input type="password" name="password"></td>
-<td><c:out value='${errors["password"]}'/></td>
+<td><font color="red"><c:out value='${errors["password"]}'/></font></td>
 </tr>
 
 <tr>

@@ -2,7 +2,7 @@ package com.minicare.controller;
 
 import com.minicare.form.LoginForm;
 import com.minicare.model.Member;
-import com.minicare.service.RegistrationService;
+import com.minicare.service.MemberService;
 import com.minicare.util.MemberConstants;
 
 import javax.servlet.RequestDispatcher;
@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
         HashMap<String,String> map = loginForm.validate();
 
         if(map.isEmpty()) {
-            RegistrationService regService = new RegistrationService();
+            MemberService regService = new MemberService();
             Member member = regService.fetchMember(loginForm);
             if(member != null) {
 

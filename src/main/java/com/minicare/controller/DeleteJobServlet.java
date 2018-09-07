@@ -26,8 +26,8 @@ public class DeleteJobServlet extends HttpServlet {
             int jobId = Integer.parseInt(request.getParameter("jobId"));
             SeekerService seekerService = new SeekerService();
             if(seekerService.deleteJob(jobId)) {
-                request.setAttribute("success","Job Was Deleted Successfully");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("HomePageseeker.jsp");
+                request.setAttribute("successMsg","Job Was Deleted Successfully");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("ListJobs.do");
                 dispatcher.forward(request,response);
             }
             else {

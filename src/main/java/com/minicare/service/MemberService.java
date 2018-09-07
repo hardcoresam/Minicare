@@ -8,20 +8,13 @@ import com.minicare.model.Member;
 import com.minicare.model.Seeker;
 import com.minicare.model.Sitter;
 
-public class RegistrationService {
+public class MemberService {
 
     public Member registerUser(RegistrationForm form) {
         int memberId = -1;
         Seeker seeker = null;
         Sitter sitter = null;
         if(form.getType().equals("seeker")) {
-            //Changing no of children and spouse name to null fields if empty.
-            if(form.getNoOfChildren().equals(""))
-                //form.setNoOfChildren(null);
-            if(form.getSpouseName().equals("")) {
-                //form.setSpouseName(null);
-            }
-            //Check the above code..
 
             seeker = new Seeker(form.getFirstName(), form.getLastName(), form.getEmail(), form.getPhoneNumber(),
                     form.getAddress(), form.getPassword(), Integer.parseInt(form.getNoOfChildren()), form.getSpouseName());
@@ -33,8 +26,8 @@ public class RegistrationService {
         }
         else {
             sitter = new Sitter(form.getFirstName(), form.getLastName(), form.getEmail(),
-                    form.getPhoneNumber(), form.getAddress(), form.getPassword(), Integer.parseInt(form.getExperience()),
-                    Float.parseFloat(form.getExpectedPay()));
+                    form.getPhoneNumber(), form.getAddress(), form.getPassword(), Double.parseDouble(form.getExperience()),
+                    Double.parseDouble(form.getExpectedPay()));
 
             MemberDAO memberDao = new MemberDAO();
             memberId = memberDao.registerUser(sitter);
@@ -58,16 +51,6 @@ public class RegistrationService {
         Member member = null;
         System.err.println(alterForm);
         if(alterForm.getType().equalsIgnoreCase("seeker")) {
-
-            //Changing no of children and spouse name to null fields if empty.
-            if(alterForm.getNoOfChildren().equals("")) {
-                //form.setNoOfChildren(null);
-            }
-            if(alterForm.getSpouseName().equals("")) {
-                //form.setSpouseName(null);
-            }
-            //Check the above code..
-
             Seeker seeker = new Seeker();
             seeker.setMemberId(alterForm.getMemberId());
             seeker.setFirstName(alterForm.getFirstName());
@@ -88,8 +71,8 @@ public class RegistrationService {
             sitter.setLastName(alterForm.getLastName());
             sitter.setPhoneNumber(alterForm.getPhoneNumber());
             sitter.setAddress(alterForm.getAddress());
-            sitter.setExperience(Integer.parseInt(alterForm.getExperience()));
-            sitter.setExpectedPay(Float.parseFloat(alterForm.getExpectedPay()));
+            sitter.setExperience(Double.parseDouble(alterForm.getExperience()));
+            sitter.setExpectedPay(Double.parseDouble(alterForm.getExpectedPay()));
             sitter.setType(Member.MemberType.SITTER);
 
             MemberDAO memberDao = new MemberDAO();

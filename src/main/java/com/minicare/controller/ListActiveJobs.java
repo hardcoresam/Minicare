@@ -19,11 +19,7 @@ public class ListActiveJobs extends HttpServlet {
         HttpSession session = request.getSession(false);
         Member member = (Member) session.getAttribute("member");
         if (member == null) {
-            //Ask whether this checking should be done here or in the PostJob.jsp itself?
-
             request.setAttribute("loginError", "Please Login First");
-            //So while creating Login jsp Page, include this stmnt in the starting so that user will understand.
-            // <c:out value="${param.loginError}"/>
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
             dispatcher.forward(request, response);
@@ -34,7 +30,6 @@ public class ListActiveJobs extends HttpServlet {
 
             List<Job> list = sitterService.listActiveJobs(member.getMemberId());
             if(list.isEmpty()) {
-                //This is to say to the user that he has applied to all the jobs out there.
                 request.setAttribute("success","You have applied to all the jobs.");
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePagesitter.jsp");
                 requestDispatcher.forward(request, response);

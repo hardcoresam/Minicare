@@ -4,6 +4,7 @@ import com.minicare.dao.*;
 import com.minicare.dto.ListApplicationDTO;
 import com.minicare.form.PostJobForm;
 import com.minicare.model.Job;
+import com.minicare.model.JobApplication;
 import com.minicare.model.Message;
 import com.minicare.model.Seeker;
 
@@ -66,19 +67,20 @@ public class SeekerService {
         return job;
     }
 
-    public boolean closeAccount(int seekerId, String type) {
-
-        //1. update jobapplication set Status=? where JobId in (select JobId from job where SeekerId=?)
-        //2.update job set Status=? where SeekerId=?
-        //3.update member set Status=? where MemberId=?
-        //We should do the above operations for closing the account.
-        //so write code and call methods to perform the above operations.
-
-        //Write Logic Here to close the applications of sitter first then jobs posted by this seeker, then mark the member as inactive.
+    public boolean closeAccount(int seekerId) {
         //also ask pranav about updating 2 tables in one operation - like the one above.
+        //Check whether we can make the Closing account(both sitter and seeker) operations in any other efficient way.
+
+        JobApplicationDAO jobApplicationDao = new JobApplicationDAO();
+        JobDAO jobDao = new JobDAO();
+        List<Job> list = jobDao.listJobs(seekerId);
+        for(Job job : list) {
+            jobApplicationDao.deleteApplicationsById(job.getJobId());
+            jobDao.deleteJob(job.getJobId());
+        }
 
         MemberDAO memberDao = new MemberDAO();
-        return memberDao.closeAccount(seekerId,type);
+        return memberDao.closeAccount(seekerId);
     }
 
     public List<ListApplicationDTO> listApplications(int jobId) {
@@ -86,8 +88,6 @@ public class SeekerService {
         List<ListApplicationDTO> list = jobApplicationDao.listApplicationsForSeeker(jobId);
         return list;
     }
-
-    //From here messaging trials
 
     public int getConversationId(int seekerId, int sitterId) {
         ConversationDAO conversationDao = new ConversationDAO();
@@ -99,8 +99,8 @@ public class SeekerService {
         return conversationDao.getMessages(conversationId);
     }
 
-    public boolean storeMessage(int conversationId, String content) {
+    public boolean storeMessage(int conversationId, String content, int senderId) {
         ConversationDAO conversationDao = new ConversationDAO();
-        return conversationDao.storeMessage(conversationId,content);
+        return conversationDao.storeMessage(conversationId,content,senderId);
     }
 }

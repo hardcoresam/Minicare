@@ -159,11 +159,11 @@
 
     <servlet>
         <servlet-name>MessageFromSeeker</servlet-name>
-        <servlet-class>com.minicare.controller.MessageFromSeeker</servlet-class>
+        <servlet-class>com.minicare.controller.SendMessageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MessageFromSeeker</servlet-name>
-        <url-pattern>/MessageFromSeeker.do</url-pattern>
+        <url-pattern>/SendMessage.do</url-pattern>
     </servlet-mapping>
 
     <servlet>

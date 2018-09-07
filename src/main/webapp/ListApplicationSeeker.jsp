@@ -9,7 +9,6 @@
 
 <tr>
 <th>Sitter Name</th>
-<th>Application Status</th>
 <th>Expected Pay</th>
 <th>Message</th>
 </tr>
@@ -19,7 +18,6 @@
 <tr>
 
 <td>${application.firstName}</td>
-<td>${application.status}</td>
 <td>${application.expectedPay}</td>
 
 <form action="SendMessage.do" method="POST">

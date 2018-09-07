@@ -25,7 +25,7 @@ public class CloseAccountServlet extends HttpServlet {
         else {
             if(member.getType() == Member.MemberType.SEEKER) {
                 SeekerService seekerService = new SeekerService();
-                if(seekerService.closeAccount(member.getMemberId(), member.getType().toString())) {
+                if(seekerService.closeAccount(member.getMemberId())) {
                     session.invalidate();
                     request.setAttribute("loginError","You Have Successfully Closed Your Account");
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
@@ -37,7 +37,7 @@ public class CloseAccountServlet extends HttpServlet {
             }
             else {
                 SitterService sitterService = new SitterService();
-                if(sitterService.closeAccount(member.getMemberId(), member.getType().toString())) {
+                if(sitterService.closeAccount(member.getMemberId())) {
                     session.invalidate();
                     request.setAttribute("loginError","You Have Successfully Closed Your Account");
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");

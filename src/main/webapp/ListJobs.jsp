@@ -5,11 +5,15 @@
 <h1 align="center">List Of Jobs</h1>
 <hr><br><br>
 
+<div align="center"><b><c:out value='${successMsg}'/></b></div>
+<br>
+
 <table border="1" align="center">
 
 <tr>
 <th>Title</th>
-<th>Status</th>
+<th>Start Time</th>
+<th>End Time</th>
 <th>Start Date</th>
 <th>End Date</th>
 <th>Edit Job</th>
@@ -22,7 +26,8 @@
 <tr>
 
 <td>${job.title}</td>
-<td>${job.status}</td>
+<td>${job.startTime}</td>
+<td>${job.endTime}</td>
 <td>${job.startDate}</td>
 <td>${job.endDate}</td>
 
