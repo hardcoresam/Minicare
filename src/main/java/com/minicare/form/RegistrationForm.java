@@ -81,6 +81,8 @@ public class RegistrationForm {
         HashMap<String,String> map = new HashMap<>();
 
         //Ask if i should keep each validation in a seperate method?
+        //So keep the validation in seperate methods and in a base class
+        //and use the base class everywhere.
 
         //FIRSTNAME
         if(firstName.equals(""))

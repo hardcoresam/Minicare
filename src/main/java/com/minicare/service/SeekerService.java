@@ -8,12 +8,15 @@ import com.minicare.model.JobApplication;
 import com.minicare.model.Message;
 import com.minicare.model.Seeker;
 
+import javax.naming.NamingException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.List;
 
 public class SeekerService {
     public boolean postJob(PostJobForm form, int seekerId) {
+        boolean status =true;
         Job job = new Job(form.getTitle(), Double.parseDouble(form.getPayPerHour()), seekerId, Time.valueOf(form.getStartTime()+":00"), Time.valueOf(form.getEndTime()+":00"), Date.valueOf(form.getStartDate()), Date.valueOf(form.getEndDate()));
 
         JobDAO jobDao = new JobDAO();
