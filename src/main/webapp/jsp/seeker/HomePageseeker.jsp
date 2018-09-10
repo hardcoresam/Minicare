@@ -5,8 +5,11 @@
 <h1 align="center">Welcome <c:out value="${sessionScope.member.firstName}"/></h1>
 <hr><br><br>
 
+<jsp:include page="/jsp/seeker/Header.jsp"/>     //Change this position and include this in every jsp.
+<br>
+
 <div align="center"><c:out value="${requestScope.success}"/></div>
-<br><br>
+<br>
 
 <form action="${pageContext.request.contextPath}/jsp/seeker/PostJob.jsp" method="POST">
 <div align="center"><input type = "submit" value="Post Job"></div>

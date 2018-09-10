@@ -1,7 +1,7 @@
 <web-app>
 
     <welcome-file-list>
-        <welcome-file>/Login.jsp</welcome-file>
+        <welcome-file>/jsp/visitor/Login.jsp</welcome-file>
     </welcome-file-list>
 
 

@@ -41,7 +41,7 @@ public class CheckRoleFilter implements Filter {
         }
 
         if(error) {
-            filterConfig.getServletContext().getRequestDispatcher("/error.jsp").forward(request,response);
+            filterConfig.getServletContext().getRequestDispatcher("/jsp/error.jsp").forward(request,response);
         }
         else {
             chain.doFilter(request,response);
